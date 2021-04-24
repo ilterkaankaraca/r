@@ -1,5 +1,4 @@
 ---
-title: "denemeler"
 author: "Ilterkaan Karaca"
 date: "4/15/2021"
 output: html_document
@@ -58,4 +57,20 @@ print(head(air))
 print(ncol(air))
 print(nrow(air))
 ```
+
 ##Exercise 3.1
+```{r}
+exam = c(0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,2,0,
+0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,3,1,1,2,0,0,1,0,0,0,0,2,0,1,0,1,
+0,1,0,0,0,0,1,0,0,1,0,0,1,1,0,1,0,0,1,0,0,0,0,0,1,0,1,1,1,2,0,0,1,0,2,1,1,0,
+0,0,0,0,1,0,1,1,0,0,0,2,1,1,1,0,2,0,1,1,2,1,1,0,1,0)
+
+abs_freq=table(exam)
+rel_freq = table(exam)/length(exam)
+print(abs_freq)
+print(rel_freq)
+
+barplot(abs_freq,names.arg=c("0","1","2","3"),main="Bar plot",
+xlab="x",ylab="y")
+```
+
