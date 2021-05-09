@@ -5,26 +5,42 @@ date: "4/24/2021"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+
+data = airquality
+print(data)
+print(mean(data[["Ozone"]]))
+# 1. Output is NA there could be missing values in Ozone column
+print(is.na(data[["Ozone"]]))
+# 2. true false matrix
+summary(data) 
+# 3. 44 Missing Values
+print(mean(data[["Ozone"]],na.rm=TRUE))
+# 4. when na.rm true function will skip that column. mean = 42.12931
+nrow(data)
+data_omit = na.omit(data, na.action="omit", fill = NULL)
+nrow(data)
+nrow(data_omit)
+data_comp=complete.cases(data[["Ozone"]])
+summary(data_comp)
+# 5. shows the counts of complete rows and rows with missing values
+#which(data[["Ozone"]])
+```
+```{r}
+data = airquality
+plot_missing(data)
+data2=impute(data, cols = list(Ozone = "100"))
+data3=impute(data, cols = list(Ozone = 100))
+print(data2$data)
+print(data3$data)
+#"100" will transform the column to chr
+
+for (i in Ozone) {
+  if(is.na(data[["Ozone"]])){
+    print('yey')
+  }
+}
+data4=impute(data, cols = list(Ozone = median(Ozone)))
+print(data4)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
